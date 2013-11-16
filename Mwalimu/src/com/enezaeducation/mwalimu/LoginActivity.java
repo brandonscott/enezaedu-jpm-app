@@ -1,5 +1,13 @@
 package com.enezaeducation.mwalimu;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+
 public class LoginActivity extends BaseActivity {
 	
 	/*
@@ -25,6 +33,8 @@ public class LoginActivity extends BaseActivity {
 
 	/** input for password */
 	private EditText fieldPassword = null;
+	
+	private ProgressDialog progressDialog = null;
 	
 	
 	/*
@@ -52,12 +62,6 @@ public class LoginActivity extends BaseActivity {
 	protected void initialiseMembers() {
 		// initialise user
 		user = User.getInstance(this);
-
-		// initialise session
-		session = Session.getInstance();
-		
-		// initialise popup helper
-		popupHelper = new PopupHelper(this);
 	}
 	
 	/** initialise interface components */
@@ -67,16 +71,16 @@ public class LoginActivity extends BaseActivity {
 		
 		// initialise progress dialogue
 		progressDialog = new ProgressDialog(this);
-		progressDialog.setTitle(getString(R.string.login_progress_title));
-		progressDialog.setMessage(getString(R.string.login_progress_body));
+		progressDialog.setTitle("Loggin in");
+		progressDialog.setMessage("Please wait... Logging you in...");
 		
 		// initialise sign in button
 		Button btnSignIn = (Button)findViewById(R.id.btnSignIn);
     	btnSignIn.setOnClickListener(btnListener);
     	
-    	// initialise offline button
-    	Button btnOffline = (Button)findViewById(R.id.btnOffline);
-    	btnOffline.setOnClickListener(btnOfflineListener);
+    	// initialise sign in button
+		Button btnRegister = (Button)findViewById(R.id.btnRegister);
+		btnRegister.setOnClickListener(btnRegisterListener);
     	
     	// username field
     	fieldUsername = (EditText)findViewById(R.id.inputUsername);
@@ -96,54 +100,13 @@ public class LoginActivity extends BaseActivity {
 		// show progress
 		progressDialog.show();
 		
-		ServerTask.makeTask(this, Constants.LOGIN_URL, new ServerCallback() {
-			@Override
-			public void run() {
-				// hide progress dialogue
-				progressDialog.hide();
-				
-				if(status == ServerTask.REQUEST_SUCCESS) {
-					// response available
-					if(response != null) {
-						boolean loggedIn;
-						try {
-							loggedIn = response.getBoolean("user");
-							if(loggedIn) {
-								// logged in
-								session.setOfflineMode(false);
-								
-								if(((CheckBox)findViewById(R.id.remember)).isChecked()) {
-									user.save();
-								} else {
-									user.remove();
-								}
-								
-								// release the progress dialogue
-								progressDialog.dismiss();
-								
-								switchToMainActivity();
-							} else {
-								int reason = response.getInt("reason");
-								popupHelper.makeUserLoginError(reason);
-							}
-							
-							return; // these error (if any) are not 'server' errors
-						} catch(JSONException e) {
-							if(DEBUG) {
-								Log.e(TAG, "Server error", e);
-							}
-						}
-					}
-				}
-				popupHelper.makeResponseError(response, status);
-			}
-		});
+		// LOGIN HERE
 	}
 
 	/** start MainActivity and closes LoginActivity */
 	private void switchToMainActivity() {
-		Intent mainActivity = new Intent(this, MainActivity.class);
-		this.startActivity(mainActivity);
+		// TODO: Intent mainActivity = new Intent(this, MainActivity.class);
+		// TODO: this.startActivity(mainActivity);
 		finish();
 	}
 	
@@ -155,7 +118,7 @@ public class LoginActivity extends BaseActivity {
 	private OnClickListener btnListener = new OnClickListener() {
 		@Override
         public void onClick(View v) {
-			if(session.isOnline(LoginActivity.this)) {
+			if(Utils.isOnline(LoginActivity.this)) {
 				
 				user.setUsername(fieldUsername.getText().toString());
 				user.setPassword(fieldPassword.getText().toString());
@@ -163,17 +126,23 @@ public class LoginActivity extends BaseActivity {
 				// try to log in
 				login();
 			} else {
-				popupHelper.makeOfflineAlert();
+				Utils.makeOkAlert(LoginActivity.this, "Offline", "Your device is offline");
 			}
         }
     };
     
-    /** when offline button clicked */
-    private OnClickListener btnOfflineListener = new OnClickListener() {
+    /** switch to login activity, closing the current one, logging out */
+   	protected void switchToRegisterActivity() {
+   		Intent intent = new Intent(this, RegistrationActivity.class);
+   		this.startActivity(intent);
+   		finish();
+   	}
+    
+    /** when button clicked */
+    private OnClickListener btnRegisterListener = new OnClickListener() {
 		@Override
         public void onClick(View v) {
-			session.setOfflineMode(true);
-			switchToMainActivity();
+			switchToRegisterActivity();
         }
     };
 }
