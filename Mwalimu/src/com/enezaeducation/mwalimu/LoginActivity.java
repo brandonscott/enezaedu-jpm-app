@@ -107,6 +107,12 @@ public class LoginActivity extends BaseActivity {
 		// show progress
 		progressDialog.show();
 		
+		if(Constants.SKIP_LOGIN) {
+			progressDialog.dismiss();
+			switchToMainActivity();
+			return;
+		}
+		
 		ServerTask task = new ServerTask(this, Constants.LOGIN_URL, new ServerCallback() {
 			@Override
 			public void run() {
@@ -117,7 +123,6 @@ public class LoginActivity extends BaseActivity {
 					// response available
 					if(response != null) {
 						boolean loggedIn;
-						Log.i(TAG, response.toString());
 						try {
 							loggedIn = response.getBoolean("valid");
 							if(loggedIn) {

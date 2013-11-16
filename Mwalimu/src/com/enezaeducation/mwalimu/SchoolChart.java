@@ -52,7 +52,8 @@ public class SchoolChart extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	WebView myWebView = (WebView) view.findViewById(R.id.webView1);
-		myWebView.loadUrl("http://beta.html5test.com/");
+    	myWebView.setBackgroundColor(0xFFFF0000);
+		//myWebView.loadUrl("http://beta.html5test.com/");
     }
     
 

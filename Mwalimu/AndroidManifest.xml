@@ -17,13 +17,17 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light" >
         <activity
-            android:name="com.enezaeducation.mwalimu.PerformanceActivity"
+            android:name="com.enezaeducation.mwalimu.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.PerformanceActivity"
+            android:label="@string/title_activity_main" >
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.RegistrationActivity"
@@ -36,14 +40,6 @@
         <activity
             android:name="com.enezaeducation.mwalimu.MainActivity"
             android:label="@string/title_activity_main" >
-        </activity>
-        <activity
-            android:name="com.enezaeducation.mwalimu.SchoolChart"
-            android:label="@string/title_activity_school_chart" >
-        </activity>
-        <activity
-            android:name="com.enezaeducation.mwalimu.StudentChart"
-            android:label="@string/title_activity_student_chart" >
         </activity>
     </application>
 

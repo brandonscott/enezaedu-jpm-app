@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity {
 		Intent intent = null;
 		switch(where) {
 		case PERFORMANCE:
-			//intent = new Intent(this, RegistrationActivity.class); // TODO
+			intent = new Intent(this, PerformanceActivity.class); // TODO
 			break;
 		case CLASSES:
 			//intent = new Intent(this, RegistrationActivity.class); // TODO
