@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ChatBox</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_send">Send</string>
+    <string name="placeholder_text_symbol"></string>
+    <string name="placeholder_text_message"></string>
+    <string name="accessability_image_ring">Ring</string>
+    <string name="placeholder_time">12:00</string>
+    <string name="placeholder_title">Name (date)</string>
+
+</resources>

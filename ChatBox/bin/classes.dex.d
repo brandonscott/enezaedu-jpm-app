@@ -1,0 +1,22 @@
+/prj/uni-android/ChatBox/bin/classes.dex : \
+/prj/uni-android/ChatBox/bin/classes/R.java.d \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/ChatMessage.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/ViewHolder.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/FakeServer.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R$drawable.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/ChatAdapter$1.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R$menu.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/BuildConfig.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/ChatAdapter.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/Message.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/ChatBoxActivity.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R$string.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/Constants.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R$layout.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/ChatBoxActivity$1.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R$style.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R$id.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R$dimen.class \
+/prj/uni-android/ChatBox/bin/classes/eu/squ1rr/uni/chatbox/R$attr.class \
+/prj/uni-android/ChatBox/bin/dexedLibs/android-support-v4-d2662af6d4397c048e50a95081d56bc0.jar \

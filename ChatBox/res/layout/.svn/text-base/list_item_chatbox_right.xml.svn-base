@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemMainLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/common_margin"
+    android:paddingRight="@dimen/common_margin"
+    android:paddingTop="@dimen/common_margin" >
+
+    <TextView
+        android:id="@+id/textSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center"
+        android:height="48sp"
+        android:text="@string/placeholder_text_symbol"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:width="48sp" />
+
+    <ImageView
+        android:id="@+id/imageRing"
+        android:layout_width="12sp"
+        android:layout_height="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="39sp"
+        android:layout_marginTop="39sp"
+        android:contentDescription="@string/accessability_image_ring"
+        android:src="@drawable/drawable_ring_right" />
+
+    <TextView
+        android:id="@+id/textMessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="48sp"
+        android:layout_marginTop="48sp"
+        android:background="@drawable/drawable_chatbox_right"
+        android:text="@string/placeholder_text_message" />
+    
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textMessage"
+        android:layout_alignLeft="@+id/textSymbol"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginLeft="4sp"
+        android:text="@string/placeholder_time"
+        android:textColor="#999"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textSymbol"
+        android:layout_toLeftOf="@+id/imageRing"
+        android:text="@string/placeholder_title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#999"
+        android:textSize="12sp" />
+
+</RelativeLayout>
