@@ -1,8 +1,14 @@
 package com.enezaeducation.mwalimu;
 
+import org.json.JSONException;
+
+import com.enezaeducation.mwalimu.server.ServerCallback;
+import com.enezaeducation.mwalimu.server.ServerTask;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -100,16 +106,38 @@ public class LoginActivity extends BaseActivity {
 		// show progress
 		progressDialog.show();
 		
-		// LOGIN HERE
+		ServerTask.makeTask(this, Constants.LOGIN_URL, new ServerCallback() {
+			@Override
+			public void run() {
+				// hide progress dialogue
+				progressDialog.hide();
+				
+				if(status == ServerTask.REQUEST_SUCCESS) {
+					// response available
+					if(response != null) {
+						boolean loggedIn;
+						Log.i(TAG, response.toString());
+						try {
+							loggedIn = response.getBoolean("valid");
+							if(loggedIn) {
+								switchToMainActivity();
+							} else {
+								Utils.makeOkAlert(LoginActivity.this, "Login rejecetd", "Username or password incorrect");
+							}
+							
+							return; // these error (if any) are not 'server' errors
+						} catch(JSONException e) {
+							if(Constants.DEBUG) {
+								Log.e(TAG, "Server error", e);
+							}
+						}
+					}
+				}
+				Utils.makeOkAlert(LoginActivity.this, "Server Error", "Sorry, Technical issues");
+			}
+		});
 	}
 
-	/** start MainActivity and closes LoginActivity */
-	private void switchToMainActivity() {
-		// TODO: Intent mainActivity = new Intent(this, MainActivity.class);
-		// TODO: this.startActivity(mainActivity);
-		finish();
-	}
-	
 	/*
 	 * PRIVATE CALLBACKS
 	 */
@@ -135,7 +163,7 @@ public class LoginActivity extends BaseActivity {
    	protected void switchToRegisterActivity() {
    		Intent intent = new Intent(this, RegistrationActivity.class);
    		this.startActivity(intent);
-   		finish();
+   		finish(); // TODO: back button on registration activity
    	}
     
     /** when button clicked */

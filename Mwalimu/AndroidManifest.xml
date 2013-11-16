@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="18" />
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light" >
         <activity
-            android:name="com.enezaeducation.mwalimu.LoginActivity"
+            android:name="com.enezaeducation.mwalimu.PerformanceActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +27,23 @@
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.RegistrationActivity"
-            android:parentActivityName="com.enezaeducation.mwalimu.LoginActivity"
-            android:label="@string/title_activity_registration" >
+            android:label="@string/title_activity_registration"
+            android:parentActivityName="com.enezaeducation.mwalimu.LoginActivity" >
             <meta-data
-	            android:name="android.support.PARENT_ACTIVITY"
-	            android:value="com.enezaeducation.mwalimu.LoginActivity" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.LoginActivity" />
+        </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.SchoolChart"
+            android:label="@string/title_activity_school_chart" >
+        </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.StudentChart"
+            android:label="@string/title_activity_student_chart" >
         </activity>
     </application>
 
