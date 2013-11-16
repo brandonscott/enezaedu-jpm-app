@@ -54,6 +54,13 @@ abstract public class BaseActivity extends ActionBarActivity {
 		finish();
 	}
 	
+	/** start MainActivity and closes LoginActivity */
+	protected void switchToMainActivity() {
+		Intent mainActivity = new Intent(this, MainActivity.class);
+		this.startActivity(mainActivity);
+		finish();
+	}
+	
 	/** makes home button in the action bar clickable */
 	protected void initialiseActionBarHomeButton() {
 		try {

@@ -60,6 +60,10 @@ public class RegistrationActivity extends BaseActivity {
 			} else if(inputCode.getText().equals("123")) {
 				Utils.makeOkAlert(RegistrationActivity.this, "Code", "Code should be 123");
 			}
+			
+			//TODO: register online
+			
+			switchToMainActivity();
         }
     };
 }
