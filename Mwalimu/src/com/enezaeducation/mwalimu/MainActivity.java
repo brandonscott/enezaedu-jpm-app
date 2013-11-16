@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -83,5 +84,18 @@ public class MainActivity extends BaseActivity {
 		}
 		this.startActivity(intent);
 	}
+	
+	/** when menu item is selected */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	// Handle item selection
+    	switch (item.getItemId()) {
+    	case R.id.action_logout:
+    		switchToLoginActivity();
+    		return true;
+    	default:
+    		return super.onOptionsItemSelected(item);
+    	}
+    }
 
 }

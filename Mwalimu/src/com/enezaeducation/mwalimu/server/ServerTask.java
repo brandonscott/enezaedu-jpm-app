@@ -6,12 +6,16 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.enezaeducation.mwalimu.Constants;
 import com.enezaeducation.mwalimu.User;
@@ -47,7 +51,7 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 	private String url = null;
 	
 	/** post parameters */
-	private ArrayList<NameValuePair> post = new ArrayList<NameValuePair>();
+	private JSONObject post = new JSONObject();
 	
 	/** callback */
 	private ServerCallback callback = null;
@@ -67,8 +71,6 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 		
 		// append username and password
 		User user = User.getInstance(activity);
-		addParameter("username", user.getUsername());
-		addParameter("password", user.getPassword());
 	}
 	
 	/*
@@ -77,7 +79,12 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 	
 	/** adds new parameter */
 	public boolean addParameter(String name, String value) {
-		return post.add(new BasicNameValuePair(name, value));
+		try {
+			post.put(name, value);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 	
 	/** run the task */
@@ -109,7 +116,11 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 			
 			// all requests are post (username and password are always there)
 			HttpPost request = new HttpPost(url);
-			request.setEntity(new UrlEncodedFormEntity(post));
+			//request.setEntity(new UrlEncodedFormEntity(post))
+			
+			request.setEntity(new ByteArrayEntity(post.toString().getBytes("UTF8")));
+			
+			request.setHeader("Content-Type", "application/json;charset=UTF-8");
 
 			HttpResponse response = client.execute(request);
 			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));

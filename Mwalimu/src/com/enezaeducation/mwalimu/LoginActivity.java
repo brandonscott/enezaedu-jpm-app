@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class LoginActivity extends BaseActivity {
@@ -106,7 +107,7 @@ public class LoginActivity extends BaseActivity {
 		// show progress
 		progressDialog.show();
 		
-		ServerTask.makeTask(this, Constants.LOGIN_URL, new ServerCallback() {
+		ServerTask task = new ServerTask(this, Constants.LOGIN_URL, new ServerCallback() {
 			@Override
 			public void run() {
 				// hide progress dialogue
@@ -120,9 +121,18 @@ public class LoginActivity extends BaseActivity {
 						try {
 							loggedIn = response.getBoolean("valid");
 							if(loggedIn) {
+								progressDialog.dismiss();
+								
+								if(((CheckBox)findViewById(R.id.remember)).isChecked()) {
+									user.save();
+								} else {
+									user.remove();
+								}
+								
 								switchToMainActivity();
 							} else {
-								Utils.makeOkAlert(LoginActivity.this, "Login rejecetd", "Username or password incorrect");
+								String desc = response.getString("description");
+								Utils.makeOkAlert(LoginActivity.this, "Login rejecetd", desc);
 							}
 							
 							return; // these error (if any) are not 'server' errors
@@ -136,6 +146,10 @@ public class LoginActivity extends BaseActivity {
 				Utils.makeOkAlert(LoginActivity.this, "Server Error", "Sorry, Technical issues");
 			}
 		});
+		//
+		task.addParameter("username", user.getUsername());
+		task.addParameter("password", user.getPassword());
+		task.run();
 	}
 
 	/*
@@ -170,6 +184,7 @@ public class LoginActivity extends BaseActivity {
     private OnClickListener btnRegisterListener = new OnClickListener() {
 		@Override
         public void onClick(View v) {
+			progressDialog.dismiss();
 			switchToRegisterActivity();
         }
     };
