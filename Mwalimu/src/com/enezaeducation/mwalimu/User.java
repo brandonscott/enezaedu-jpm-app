@@ -21,6 +21,8 @@ public class User {
 	/** password key for shared preferences */
 	public static final String PREF_PASSWORD = "password";
 	
+	public static final String PREF_ID = "id";
+	
 	/*
 	 *  MEMBERS
 	 */
@@ -37,6 +39,8 @@ public class User {
 	/** singleton instance */
 	private static User instance = null;
 	
+	private int id = 11; // TODO: -1
+	
 	/*
 	 *  INITIALISATION
 	 */
@@ -47,6 +51,7 @@ public class User {
 		
 		username = sharedPreferences.getString(User.PREF_USERNAME, "");
 		password = sharedPreferences.getString(User.PREF_PASSWORD, "");
+		id = sharedPreferences.getInt(User.PREF_ID, 11); // TODO: -1
 	}
 	
 	/**
@@ -85,6 +90,14 @@ public class User {
 		this.password = password.trim();
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
 	/*
 	 * 	PUBLIC METHODS
 	 */
@@ -95,6 +108,7 @@ public class User {
 		
 		edit.putString(PREF_USERNAME, username);
 		edit.putString(PREF_PASSWORD, password);
+		edit.putInt(PREF_ID, id);
 		
         edit.commit();
     }
@@ -105,6 +119,7 @@ public class User {
 		
 		edit.remove(PREF_USERNAME);
 		edit.remove(PREF_PASSWORD);
+		edit.remove(PREF_ID);
 		
         edit.commit();
 		

@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity {
 			intent = new Intent(this, PerformanceActivity.class); // TODO
 			break;
 		case CLASSES:
-			//intent = new Intent(this, RegistrationActivity.class); // TODO
+			intent = new Intent(this, ClassActivity.class); // TODO
 			break;
 		case CHAT:
 			//intent = new Intent(this, RegistrationActivity.class); // TODO

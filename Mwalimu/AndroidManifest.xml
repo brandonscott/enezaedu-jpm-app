@@ -41,6 +41,18 @@
             android:name="com.enezaeducation.mwalimu.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.ClassActivity"
+            android:label="@string/title_activity_class" >
+        </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.AddClassActivity"
+            android:label="@string/title_activity_class_students" >
+        </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.ClassStudentsActivity"
+            android:label="@string/title_activity_class_students" >
+        </activity>
     </application>
 
 </manifest>
