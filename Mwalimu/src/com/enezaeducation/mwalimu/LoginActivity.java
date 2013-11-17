@@ -15,7 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-
+/** Connection strings for the JSON */
 public class LoginActivity extends BaseActivity {
 	
 	/*

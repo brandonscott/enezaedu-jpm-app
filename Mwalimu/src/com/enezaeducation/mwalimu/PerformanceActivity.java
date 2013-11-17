@@ -6,7 +6,9 @@ import com.enezaeducation.mwalimu.StudentChart;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-
+/**
+ * View to hold fragments for the reports
+ */
 public class PerformanceActivity extends BaseActivity {
 
 	
@@ -22,10 +24,10 @@ public class PerformanceActivity extends BaseActivity {
 	 */
 
     
-    /** episode list tab fragment */
+    /** school performance tab fragment */
 	private SchoolChart schoolChart = null;
 	
-	/** contact list tab fragment */
+	/** student performance tab fragment */
 	private StudentChart studentChart = null;
 	
 	/** last opened tab */
@@ -84,7 +86,7 @@ public class PerformanceActivity extends BaseActivity {
     }
     
     
-
+    /** save the tab selection state */
 	@Override
     protected void onSaveInstanceState(Bundle outState) {
         // Save the current tab position
