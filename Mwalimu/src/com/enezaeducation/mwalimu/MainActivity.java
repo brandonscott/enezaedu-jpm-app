@@ -3,6 +3,7 @@ package com.enezaeducation.mwalimu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,9 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initialiseInterface(R.layout.activity_main);
+		
+		ActionBar actionBar = getSupportActionBar();
+    	actionBar.setDisplayHomeAsUpEnabled(false);
 		
 		initialiseMembers();
 	}

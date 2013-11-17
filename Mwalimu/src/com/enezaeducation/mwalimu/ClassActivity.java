@@ -73,8 +73,8 @@ public class ClassActivity extends BaseActivity {
 	
 	private void loadClasses() {
 		final User user = User.getInstance(this);
-		Log.i(TAG, Constants.BASE_TEMP_URL + "users/" + user.getId() + "/classes");
-		ServerTask task = new ServerTask(ClassActivity.this, Constants.BASE_TEMP_URL + "users/" + user.getId() + "/classes", new ServerCallback() {
+		Log.i(TAG, Constants.BASE_URL + "users/" + user.getId() + "/classes");
+		ServerTask task = new ServerTask(ClassActivity.this, Constants.BASE_URL + "users/" + user.getId() + "/classes", new ServerCallback() {
 			@Override
 			public void run() {
 				// hide progress dialogue

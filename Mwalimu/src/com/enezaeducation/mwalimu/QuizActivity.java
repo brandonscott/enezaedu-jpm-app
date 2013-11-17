@@ -63,7 +63,7 @@ public class QuizActivity extends BaseActivity {
 	
 	private void loadClasses() {
 		final User user = User.getInstance(this);
-		ServerTask task = new ServerTask(QuizActivity.this, Constants.BASE_TEMP_URL + "assignments", new ServerCallback() {
+		ServerTask task = new ServerTask(QuizActivity.this, Constants.BASE_URL + "assignments", new ServerCallback() {
 			@Override
 			public void run() {
 				// hide progress dialogue

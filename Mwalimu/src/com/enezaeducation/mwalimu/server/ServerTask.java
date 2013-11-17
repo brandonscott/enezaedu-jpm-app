@@ -98,6 +98,14 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 		return true;
 	}
 	
+	public void addInt(String name, int value) {
+		try {
+			post.put(name, value);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/** run the task */
 	public void run() {
 		Server.getInstance().addTask(this);
@@ -141,6 +149,8 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 			HttpResponse response = client.execute(request);
 			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
+			Log.i(TAG, "->>>" + post.toString());
+			
 			StringBuffer sb = new StringBuffer("");
 			String line = "";
 			String NL = System.getProperty("line.separator");

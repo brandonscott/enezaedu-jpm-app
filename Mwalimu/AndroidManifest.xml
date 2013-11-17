@@ -27,12 +27,16 @@
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.PerformanceActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:parentActivityName="com.enezaeducation.mwalimu.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.MainActivity" />
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.RegistrationActivity"
             android:label="@string/title_activity_registration"
-            android:parentActivityName="com.enezaeducation.mwalimu.LoginActivity" >
+            android:parentActivityName="com.enezaeducation.mwalimu.LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.enezaeducation.mwalimu.LoginActivity" />
@@ -43,35 +47,67 @@
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.ClassActivity"
-            android:label="@string/title_activity_class" >
+            android:label="@string/title_activity_class"
+            android:parentActivityName="com.enezaeducation.mwalimu.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.MainActivity" />
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.AddClassActivity"
-            android:label="@string/title_activity_class_students" >
+            android:label="@string/title_activity_class_students"
+            android:parentActivityName="com.enezaeducation.mwalimu.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.MainActivity" />
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.ClassStudentsActivity"
-            android:label="@string/title_activity_class_students" >
+            android:label="@string/title_activity_class_students"
+            android:parentActivityName="com.enezaeducation.mwalimu.ClassActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.ClassActivity" />
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.AddStudentActivity"
-            android:label="@string/title_activity_class_students" >
+            android:label="@string/title_activity_class_students"
+            android:parentActivityName="com.enezaeducation.mwalimu.ClassStudentsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.ClassStudentsActivity" />
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.QuizActivity"
-            android:label="@string/title_activity_class_students" >
+            android:label="@string/title_activity_class_students"
+            android:parentActivityName="com.enezaeducation.mwalimu.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.MainActivity" />
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.ClassQuizActivity"
-            android:label="@string/title_activity_class_students" >
+            android:label="@string/title_activity_class_students"
+            android:parentActivityName="com.enezaeducation.mwalimu.QuizActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.QuizActivity" />
         </activity>
         <activity
             android:name="com.enezaeducation.mwalimu.ChatActivity"
-            android:label="@string/title_activity_class_students" >
+            android:label="@string/title_activity_class_students"
+            android:parentActivityName="com.enezaeducation.mwalimu.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.MainActivity" />
         </activity>
         <activity
-            android:name="com.enezaeducation.mwalimu.ChatBoxActivity"
-            android:label="@string/title_activity_class_students" >
+            android:name="eu.squ1rr.uni.chatbox.ChatBoxActivity"
+            android:label="@string/title_activity_class_students"
+            android:parentActivityName="com.enezaeducation.mwalimu.ChatActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.enezaeducation.mwalimu.ChatActivity" />
         </activity>
     </application>
 

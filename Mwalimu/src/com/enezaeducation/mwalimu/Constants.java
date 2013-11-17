@@ -3,7 +3,7 @@ package com.enezaeducation.mwalimu;
 public class Constants {
 	public final static boolean DEBUG = true;
 	
-	public final static boolean SKIP_LOGIN = true;
+	public final static boolean SKIP_LOGIN = false;
 	
 	public static final int HTTP_TIMEOUT = 30 * 1000; // 30 seconds
 	
@@ -11,11 +11,11 @@ public class Constants {
 	
 	public static final String LOGIN_URL = BASE_URL + "authenticate";
 	
-	public static final String REGISTRATION_URL = BASE_URL + "registration";
-
-	public static final String BASE_TEMP_URL = "http://squ1rr.eu/";
+	public static final String REGISTRATION_URL = BASE_URL + "users";
+	
+	public static final String SCHOOLS_URL = BASE_URL + "schools";
 	
 	public static final String SCHOOLCHART_URL = BASE_URL + "schools/averagescores";
 	
-	public static final String STUDENTCHART_URL = BASE_TEMP_URL + "users/student/averagescores/";
+	public static final String STUDENTCHART_URL = BASE_URL + "users/student/averagescores/";
 }

@@ -62,7 +62,7 @@ public class AddStudentActivity extends BaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				User user = User.getInstance(AddStudentActivity.this);
-				ServerTask task = new ServerTask(AddStudentActivity.this, Constants.BASE_TEMP_URL + "classes/" + classId + "/add/" + userIds.get(arg2), new ServerCallback() {
+				ServerTask task = new ServerTask(AddStudentActivity.this, Constants.BASE_URL + "classes/" + classId + "/add/" + userIds.get(arg2), new ServerCallback() {
 					@Override
 					public void run() {
 						// hide progress dialogue
@@ -95,7 +95,7 @@ public class AddStudentActivity extends BaseActivity {
 	}
 	
 	private void loadClasses() {
-		ServerTask task = new ServerTask(AddStudentActivity.this, Constants.BASE_TEMP_URL + "users/student", new ServerCallback() {
+		ServerTask task = new ServerTask(AddStudentActivity.this, Constants.BASE_URL + "users/student", new ServerCallback() {
 			@Override
 			public void run() {
 				// hide progress dialogue

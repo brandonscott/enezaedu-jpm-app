@@ -20,6 +20,7 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
@@ -39,11 +40,8 @@ public class BroadcastTab extends Fragment {
 	/** parent activity */
 	private Activity activity = null;
 	
-	private ArrayList<Message> messages = new ArrayList<Message>();
-	
-	public static SparseArray<String> names = new SparseArray<String>();
-	
-	private static long maxTs = 0;
+	ArrayList<Integer> classIds = null;
+	ArrayList<String> classNames = null;
 	
 	/*
 	 * INITIALISATION
@@ -61,10 +59,12 @@ public class BroadcastTab extends Fragment {
     	
     }
     
+    
+    
     /** showing chart page, when tab is opened */
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
-    	ListView listView = (ListView)view.findViewById(R.id.classesListView);
+    	final ListView listView = (ListView)view.findViewById(R.id.classesListView);
     	
     	int ts = 0;
     	User user = User.getInstance(activity);
@@ -76,31 +76,42 @@ public class BroadcastTab extends Fragment {
 					// response available
 					if(response != null) {
 						Log.i("", response.toString());
-						try {
-							JSONArray messages = response.getJSONArray("messages");
-							for(int i = 0; i < messages.length(); ++i) {
-								JSONObject msg = messages.getJSONObject(i);
-								String body = msg.getString("body");
-								int sender = msg.getInt("send_from");
-								int rece = msg.getInt("send_to");
-								long timestamp = msg.getLong("timestamp");
-								Message message = new Message(body, timestamp, sender, rece);
-							}
-							JSONArray users = response.getJSONArray("users");
-							for(int i = 0; i < messages.length(); ++i) {
-								JSONObject usr = users.getJSONObject(i);
-								int id = usr.getInt("id");
-								String name = usr.getString("name");
-								if(names.get(id) == null) {
-									names.put(id, name);
+							ServerTask task = new ServerTask(activity, Constants.BASE_URL + "classes", new ServerCallback() {
+								@Override
+								public void run() {
+									// hide progress dialogue
+									
+									if(status == ServerTask.REQUEST_SUCCESS) {
+										// response available
+										if(response != null) {
+											Log.i(TAG, response.toString());
+											try {
+												JSONArray classes = response.getJSONArray("classes");
+												classIds = new ArrayList<Integer>();
+												classNames = new ArrayList<String>();
+												for(int i = 0; i < classes.length(); ++i) {
+													JSONObject row = classes.getJSONObject(i);
+													int id = row.getInt("id");
+													String name = row.getString("name");
+													classIds.add(id);
+													classNames.add(name);
+												}
+												ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, classNames);
+												listView.setAdapter(adapter);
+												return; // these error (if any) are not 'server' errors
+											} catch(JSONException e) {
+												if(Constants.DEBUG) {
+													Log.e(TAG, "Server error", e);
+												}
+											}
+										}
+									}
+									Utils.makeOkAlert(activity, "Server Error", "Sorry, Technical issues");
 								}
-							}
+							});
+							//
+							task.run();
 							return; // these error (if any) are not 'server' errors
-						} catch(JSONException e) {
-							if(Constants.DEBUG) {
-								Log.e("", "Server error", e);
-							}
-						}
 					}
 				}
 				

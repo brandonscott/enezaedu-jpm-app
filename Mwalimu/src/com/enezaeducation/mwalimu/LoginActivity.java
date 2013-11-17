@@ -8,6 +8,7 @@ import com.enezaeducation.mwalimu.server.ServerTask;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -96,6 +97,9 @@ public class LoginActivity extends BaseActivity {
     	// password field
     	fieldPassword = (EditText)findViewById(R.id.inputPassword);
     	fieldPassword.setText(user.getPassword());
+    	
+    	ActionBar actionBar = getSupportActionBar();
+    	actionBar.setDisplayHomeAsUpEnabled(false);
 	}
 	
 	/*
@@ -157,6 +161,7 @@ public class LoginActivity extends BaseActivity {
 		//
 		task.addParameter("username", user.getUsername());
 		task.addParameter("password", user.getPassword());
+		task.setMethod(ServerTask.POST);
 		task.run();
 	}
 

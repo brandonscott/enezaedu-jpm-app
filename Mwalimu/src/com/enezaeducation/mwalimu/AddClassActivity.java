@@ -52,7 +52,7 @@ public class AddClassActivity extends BaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				User user = User.getInstance(AddClassActivity.this);
-				ServerTask task = new ServerTask(AddClassActivity.this, Constants.BASE_TEMP_URL + "classes/" + classIds.get(arg2) + "/add/" + user.getId(), new ServerCallback() {
+				ServerTask task = new ServerTask(AddClassActivity.this, Constants.BASE_URL + "classes/" + classIds.get(arg2) + "/add/" + user.getId(), new ServerCallback() {
 					@Override
 					public void run() {
 						// hide progress dialogue
@@ -85,7 +85,7 @@ public class AddClassActivity extends BaseActivity {
 	}
 	
 	private void loadClasses() {
-		ServerTask task = new ServerTask(AddClassActivity.this, Constants.BASE_TEMP_URL + "classes", new ServerCallback() {
+		ServerTask task = new ServerTask(AddClassActivity.this, Constants.BASE_URL + "classes", new ServerCallback() {
 			@Override
 			public void run() {
 				// hide progress dialogue

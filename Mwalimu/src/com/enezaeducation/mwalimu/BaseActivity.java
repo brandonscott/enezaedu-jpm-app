@@ -23,6 +23,7 @@ abstract public class BaseActivity extends ActionBarActivity {
 	 */
 
 	/** initialise the interface and set the content view layout */
+	
 	protected void initialiseInterface(int layout) {
 		setContentView(layout);
 		initialiseActionBar();
@@ -38,6 +39,8 @@ abstract public class BaseActivity extends ActionBarActivity {
     		actionBar.setDisplayShowTitleEnabled(false);
     		actionBar.setDisplayUseLogoEnabled(true);
     	}
+    	
+    	actionBar.setDisplayHomeAsUpEnabled(true);
     	
     	return actionBar;
     }

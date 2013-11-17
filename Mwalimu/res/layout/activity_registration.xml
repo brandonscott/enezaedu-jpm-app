@@ -27,21 +27,17 @@
        			android:background="@color/red"
         		android:padding="10dp"
         		android:textAppearance="?android:attr/textAppearanceMedium" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
 
-                <Spinner
-                    android:background="@color/white"
-                    android:layout_marginBottom="10dp"
-                    android:padding="8dp"
-                    android:hint="Type"
-                    android:id="@+id/spinnerType"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/user_types" />
-            </LinearLayout>
+			<Spinner
+			    android:id="@+id/spinnerType"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginBottom="10dp"
+			    android:layout_weight="1"
+			    android:background="@color/white"
+			    android:entries="@array/user_types"
+			    android:hint="Type"
+			    android:padding="8dp" />
 
             <EditText
                 android:layout_marginBottom="10dp"
@@ -81,22 +77,16 @@
                 android:inputType="phone"
                 android:padding="8dp" />
 
-            <LinearLayout
+            <Spinner
+                android:id="@+id/spinnerGender"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <Spinner
-                    android:id="@+id/Spinner01"
-                    android:background="@color/white"
-                    android:padding="8dp"
-                    android:layout_marginBottom="10dp"
-                    android:hint="Gender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/user_gender" />
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:entries="@array/user_gender"
+                android:hint="Gender"
+                android:padding="8dp" />
 
 
             <EditText
@@ -121,15 +111,16 @@
                 android:ems="10"
                 android:inputType="textPassword" />
 
-            <EditText
-                android:layout_marginBottom="10dp"
-                android:padding="8dp"
-                android:background="@color/white"
-                android:hint="School"
-                android:id="@+id/inputSchool"
+            <Spinner
+                android:id="@+id/spinnerSchool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10" />
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:entries="@array/user_gender"
+                android:hint="Gender"
+                android:padding="8dp" />
 
             <EditText
                 android:layout_marginBottom="10dp"
