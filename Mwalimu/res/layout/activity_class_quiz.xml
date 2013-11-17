@@ -15,7 +15,7 @@
     	android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quizzes"
+        android:text="Select Class"
         android:layout_marginBottom="10dp"
         android:textColor="@color/white"
         android:background="@color/blue"
