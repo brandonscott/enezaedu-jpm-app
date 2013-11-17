@@ -64,8 +64,12 @@ public class ClassQuizActivity extends BaseActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Utils.makeOkAlert(ClassQuizActivity.this, "Success", "Successfully broadcasted");
-				finish();
+				Utils.makeOkAlert(ClassQuizActivity.this, "Success", "Successfully broadcasted", new Runnable() {
+					@Override
+					public void run() {
+						finish();
+					}
+				});
 			}
 		});
 	}

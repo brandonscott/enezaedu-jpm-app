@@ -40,4 +40,20 @@ public class Utils {
 
 		alertDialog.show();
 	}
+	
+	/** make a normal OK alert */
+	public static void makeOkAlert(Activity activity, String title, String message, final Runnable run) {
+		AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
+
+		alertDialog.setTitle(title);
+		alertDialog.setMessage(message);
+		alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				run.run();
+			}
+		});
+
+		alertDialog.show();
+	}
 }

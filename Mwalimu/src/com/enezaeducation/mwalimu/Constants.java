@@ -16,4 +16,6 @@ public class Constants {
 	public static final String BASE_TEMP_URL = "http://squ1rr.eu/";
 	
 	public static final String SCHOOLCHART_URL = BASE_URL + "schools/averagescores";
+	
+	public static final String STUDENTCHART_URL = BASE_TEMP_URL + "users/student/averagescores/";
 }

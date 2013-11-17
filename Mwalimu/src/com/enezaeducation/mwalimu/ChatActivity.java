@@ -7,7 +7,7 @@ import com.enezaeducation.mwalimu.StudentChart;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 
-public class PerformanceActivity extends BaseActivity {
+public class ChatActivity extends BaseActivity {
 
 	
 	/*
@@ -15,7 +15,7 @@ public class PerformanceActivity extends BaseActivity {
 	 */
 
 	/** tag name */
-    //private static final String TAG = "MainActivity";
+    private static final String TAG = "ChatActivity";
 	
 	/*
 	 * 	MEMBERS
@@ -23,10 +23,10 @@ public class PerformanceActivity extends BaseActivity {
 
     
     /** episode list tab fragment */
-	private SchoolChart schoolChart = null;
+	private ChatTab chatTab = null;
 	
 	/** contact list tab fragment */
-	private StudentChart studentChart = null;
+	private BroadcastTab broadcastTab = null;
 	
 	/** last opened tab */
 	private int selectedTab = 0;
@@ -59,19 +59,19 @@ public class PerformanceActivity extends BaseActivity {
     	actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     	
     	// initiating both tabs and set text to it
-    	ActionBar.Tab schoolChartTab = actionBar.newTab().setText("Schools");
-    	ActionBar.Tab studentChartTab = actionBar.newTab().setText("Students");
+    	ActionBar.Tab schoolChartTab = actionBar.newTab().setText("Chat");
+    	ActionBar.Tab studentChartTab = actionBar.newTab().setText("Broadcast");
 
     	// create the two fragments we want to use for display content
-    	schoolChart = new SchoolChart();
-    	schoolChart.initialise(this);
+    	chatTab = new ChatTab();
+    	chatTab.initialise(this);
     	
-    	studentChart = new StudentChart();
-    	studentChart.initialise(this);
+    	broadcastTab = new BroadcastTab();
+    	broadcastTab.initialise(this);
 
     	// set the tab listener, now we can listen for clicks
-    	schoolChartTab.setTabListener(new TabsListener(schoolChart));
-    	studentChartTab.setTabListener(new TabsListener(studentChart));
+    	schoolChartTab.setTabListener(new TabsListener(chatTab));
+    	studentChartTab.setTabListener(new TabsListener(broadcastTab));
 
     	// add the two tabs to the actionBar
     	actionBar.addTab(schoolChartTab);

@@ -1,5 +1,8 @@
 package com.enezaeducation.mwalimu;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.json.JSONException;
 
 import com.enezaeducation.mwalimu.server.ServerCallback;
@@ -82,11 +85,19 @@ public class RegistrationActivity extends BaseActivity {
     private OnClickListener btnRegisterListener = new OnClickListener() {
 		@Override
         public void onClick(View v) {
-			if(inputName.length() == 0 || inputPassword.length() == 0 || inputPhone.length() == 0 || inputEmail.length() == 0 || inputSchool.length() == 0 || inputCode.length() == 0) {
-				Utils.makeOkAlert(RegistrationActivity.this, "Fields", "Fill up all the fields");
-			} else if(inputCode.getText().equals("123")) {
-				Utils.makeOkAlert(RegistrationActivity.this, "Code", "Code should be 123");
-			}
+			/*if(inputName.length() == 0 || inputPassword.length() == 0 || inputPhone.length() == 0 || inputEmail.length() == 0 || inputSchool.length() == 0 || inputCode.length() == 0) {
+				Utils.makeOkAlert(RegistrationActivity.this, "Fields", "Fill up all the fields"); return;
+			} else if(!inputCode.getText().equals("123")) {
+				Utils.makeOkAlert(RegistrationActivity.this, "Code", "Code should be 123"); return;
+			}*/
+			
+			String pattern = "\\+\\d{8,}";
+		    Pattern r = Pattern.compile(pattern);
+		    Matcher m = r.matcher(inputPhone.getText());
+		    if (!m.find( )) {
+		    	Utils.makeOkAlert(RegistrationActivity.this, "Phone", "No spaces! Country code!"); return;
+		    }
+		    
 			
 			ServerTask task = new ServerTask(RegistrationActivity.this, Constants.REGISTRATION_URL, new ServerCallback() {
 				@Override

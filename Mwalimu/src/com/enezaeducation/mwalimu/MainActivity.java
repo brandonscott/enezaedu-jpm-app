@@ -70,16 +70,16 @@ public class MainActivity extends BaseActivity {
 		Intent intent = null;
 		switch(where) {
 		case PERFORMANCE:
-			intent = new Intent(this, PerformanceActivity.class); // TODO
+			intent = new Intent(this, PerformanceActivity.class);
 			break;
 		case CLASSES:
-			intent = new Intent(this, ClassActivity.class); // TODO
+			intent = new Intent(this, ClassActivity.class);
 			break;
 		case CHAT:
-			//intent = new Intent(this, QuizActivity.class); // TODO
+			intent = new Intent(this, ChatActivity.class);
 			break;
 		case ASSIGN:
-			intent = new Intent(this, QuizActivity.class); // TODO
+			intent = new Intent(this, QuizActivity.class);
 			break;
 		}
 		this.startActivity(intent);

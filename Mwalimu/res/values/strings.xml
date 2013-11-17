@@ -12,5 +12,13 @@
     <string name="hello">Test</string>
     <string name="title_activity_class">ClassActivity</string>
     <string name="title_activity_class_students">ClassStudentsActivity</string>
+    
+    <string name="button_send">Send</string>
+    <string name="placeholder_text_symbol"></string>
+    <string name="placeholder_text_message"></string>
+    <string name="accessability_image_ring">Ring</string>
+    <string name="placeholder_time">12:00</string>
+    <string name="placeholder_title">Name (date)</string>
+    
 
 </resources>

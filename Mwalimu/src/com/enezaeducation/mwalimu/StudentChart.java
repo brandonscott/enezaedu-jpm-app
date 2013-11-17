@@ -1,13 +1,26 @@
 package com.enezaeducation.mwalimu;
 
+import java.util.Random;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import  com.enezaeducation.mwalimu.R;
+import com.enezaeducation.mwalimu.server.ServerCallback;
+import com.enezaeducation.mwalimu.server.ServerTask;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 
 public class StudentChart extends Fragment {
@@ -45,6 +58,43 @@ public class StudentChart extends Fragment {
     /** showing list, when tab is opened */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+    	User user = User.getInstance(activity);
+    	ServerTask task = new ServerTask(activity, Constants.STUDENTCHART_URL + user.getId(), new ServerCallback() {
+			@Override
+			public void run() {
+				if(status == ServerTask.REQUEST_SUCCESS) {
+					// response available
+					if(response != null) {
+						Log.i("", response.toString());
+						try {
+							JSONArray students = response.getJSONArray("students");
+							for(int i = 0; i < students.length(); ++i) {
+								JSONObject row = students.getJSONObject(i);
+								String name = row.getString("name");
+								int score = row.getInt("score");
+								
+								TableRow tR = new TableRow(activity);
+								TextView tV_txt1 = new TextView(activity);
+								TextView tV_txt2 = new TextView(activity);
+								tV_txt1.setText(name);
+								tV_txt2.setText("" + score);
+								tR.addView(tV_txt1);
+						        tR.addView(tV_txt2);
+						        
+						        ((TableLayout)activity.findViewById(R.id.tableLayout1)).addView(tR);
+							}
+							return; // these error (if any) are not 'server' errors
+						} catch(JSONException e) {
+							if(Constants.DEBUG) {
+								Log.e("", "Server error", e);
+							}
+						}
+					}
+				}
+				
+			}
+    	});
 
+    	task.run();
     }
 }

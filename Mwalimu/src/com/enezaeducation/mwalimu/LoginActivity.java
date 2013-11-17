@@ -130,7 +130,7 @@ public class LoginActivity extends BaseActivity {
 								
 								//TODO: user.setId(response.getInt("id"));
 								user.setId(11);
-								
+								Log.i(TAG, "" + ((CheckBox)findViewById(R.id.remember)).isChecked());
 								if(((CheckBox)findViewById(R.id.remember)).isChecked()) {
 									user.save();
 								} else {

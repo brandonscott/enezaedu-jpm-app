@@ -11,83 +11,93 @@
     tools:context=".MainActivity"
     android:background="@color/grey" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-         >
-
-        <TextView
-            android:textColor="@color/white"
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last updated: "
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:textColor="@color/white"
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="#Date#"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="5dp"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <Button
-            android:layout_marginBottom="5dp"
-            android:background="@color/blue"
-            android:id="@+id/btnPerformance"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:textColor="@color/white"
-            android:text="Performance" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-        <Button
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:background="@color/red"
-            android:id="@+id/btnAssignWork"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:textColor="@color/white"
-            android:text="Assign Work" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:visibility="invisible" >
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last updated: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#Date#"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
-        <Button
-            android:background="@color/red"
-            android:id="@+id/btnClasses"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_gravity="fill_vertical"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="Classes" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp" >
 
-        <Button
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/white"
-            android:background="@color/blue"
-            android:id="@+id/btnChat"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_gravity="top"
-            android:layout_weight="1"
-            android:text="Chat" />
+                <Button
+                    android:id="@+id/btnPerformance"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/blue"
+                    android:text="Performance"
+                    android:textColor="@color/white" />
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btnAssignWork"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/red"
+                    android:text="Assign Work"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btnClasses"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="fill_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/red"
+                    android:text="Classes"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btnChat"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/blue"
+                    android:text="Chat"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
