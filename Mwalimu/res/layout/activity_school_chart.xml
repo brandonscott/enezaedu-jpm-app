@@ -6,12 +6,9 @@
     android:orientation="vertical"
     tools:context=".SchoolChart" >
 
-    <WebView
-        android:id="@+id/webView1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:visibility="visible" />
+    <com.enezaeducation.mwalimu.BarGraph
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/graph"/>
 
 </RelativeLayout>
