@@ -8,14 +8,17 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:background="@color/grey" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right" >
+        android:gravity="right"
+         >
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,6 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,21 +36,29 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <Button
+            android:layout_marginBottom="5dp"
+            android:background="@color/blue"
             android:id="@+id/btnPerformance"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:text="Performance" />
 
         <Button
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/red"
             android:id="@+id/btnAssignWork"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:text="Assign Work" />
 
     </LinearLayout>
@@ -56,14 +68,19 @@
         android:layout_height="wrap_content" >
 
         <Button
+            android:background="@color/red"
             android:id="@+id/btnClasses"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:layout_gravity="fill_vertical"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:text="Classes" />
 
         <Button
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/white"
+            android:background="@color/blue"
             android:id="@+id/btnChat"
             android:layout_width="128dp"
             android:layout_height="128dp"
