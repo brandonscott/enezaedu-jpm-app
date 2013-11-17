@@ -1,6 +1,7 @@
 package com.enezaeducation.mwalimu;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,10 +54,10 @@ public class SchoolChart extends Fragment {
     
     /** showing chart page, when tab is opened */
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
     	final ArrayList<Bar> points = new ArrayList<Bar>();
     	
-    	ServerTask.makeTask(activity, Constants.SCHOOLCHART_URL, new ServerCallback() {
+    	ServerTask task = new ServerTask(activity, Constants.SCHOOLCHART_URL, new ServerCallback() {
 			@Override
 			public void run() {
 				if(status == ServerTask.REQUEST_SUCCESS) {
@@ -69,13 +70,17 @@ public class SchoolChart extends Fragment {
 							for(int i = 0; i < schools.length(); ++i) {
 								JSONObject row = schools.getJSONObject(i);
 								String name = row.getString("name");
-								double score = row.getDouble("score");
+								Double score = row.getDouble("score");
 							  	
+								Random color = new Random();
+								
 								Bar bar = new Bar();
-						    	bar.setColor(Color.parseColor("#99CC00"));
+						    	bar.setColor(Color.argb(255, color.nextInt(255), color.nextInt(255), color.nextInt(255)));
 						    	bar.setName(name);
 						    	bar.setValue(score);
 						    	points.add(bar);
+						    	BarGraph g = (BarGraph) view.findViewById(R.id.graph);
+						    	g.setBars(points);
 							}
 							// ->
 							return; // these error (if any) are not 'server' errors
@@ -89,9 +94,10 @@ public class SchoolChart extends Fragment {
 				
 			}
     	});
+
+    	task.run();
     	
-    	BarGraph g = (BarGraph) view.findViewById(R.id.graph);
-    	g.setBars(points);
+    	
     }
     
 

@@ -26,6 +26,7 @@ package com.enezaeducation.mwalimu;
 import java.util.ArrayList;
 
 import com.enezaeducation.mwalimu.R;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -83,7 +84,7 @@ public class BarGraph extends View {
             canvas.drawColor(Color.TRANSPARENT);
             NinePatchDrawable popup = (NinePatchDrawable)this.getResources().getDrawable(R.drawable.popup_black);
             
-            float maxValue = 0;
+            Double maxValue = 0.0;
             float padding = 7;
             int selectPadding = 4;
             float bottomPadding = 40;

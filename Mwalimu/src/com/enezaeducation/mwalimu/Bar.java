@@ -29,7 +29,7 @@ import android.graphics.Region;
 public class Bar {
 	private int mColor;
 	private String mName = null;
-	private float mValue;
+	private Double mValue;
 	private String mValueString = null;
 	private Path mPath = null;
 	private Region mRegion = null;
@@ -46,11 +46,11 @@ public class Bar {
 	public void setName(String name) {
 		this.mName = name;
 	}
-	public float getValue() {
+	public Double getValue() {
 		return mValue;
 	}
-	public void setValue(float value) {
-		this.mValue = value;
+	public void setValue(Double score) {
+		this.mValue = score;
 	}
 	
 	public String getValueString()

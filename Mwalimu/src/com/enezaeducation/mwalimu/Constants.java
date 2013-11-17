@@ -7,7 +7,7 @@ public class Constants {
 	
 	public static final int HTTP_TIMEOUT = 30 * 1000; // 30 seconds
 	
-	public static final String BASE_URL = "http://54.220.201.194/";
+	public static final String BASE_URL = "http://54.220.201.194/api/";
 	
 	public static final String LOGIN_URL = BASE_URL + "authenticate";
 	
