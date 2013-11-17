@@ -53,6 +53,18 @@
             android:name="com.enezaeducation.mwalimu.ClassStudentsActivity"
             android:label="@string/title_activity_class_students" >
         </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.AddStudentActivity"
+            android:label="@string/title_activity_class_students" >
+        </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.QuizActivity"
+            android:label="@string/title_activity_class_students" >
+        </activity>
+        <activity
+            android:name="com.enezaeducation.mwalimu.ClassQuizActivity"
+            android:label="@string/title_activity_class_students" >
+        </activity>
     </application>
 
 </manifest>

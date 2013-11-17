@@ -1,9 +1,5 @@
 package com.enezaeducation.mwalimu;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -15,24 +11,21 @@ import com.enezaeducation.mwalimu.server.ServerTask;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class ClassStudentsActivity extends BaseActivity {
+public class AddStudentActivity extends BaseActivity {
 	
 	private ListView listView = null;
-	
-	private Button btnAddUser = null;
 
-	private final static String TAG = "ClassStudentsActivity";
+	private final static String TAG = "AddStudentActivity";
 	
 	private ArrayList<Integer> userIds = null;
 	private ArrayList<String> userNames = null;
@@ -50,7 +43,7 @@ public class ClassStudentsActivity extends BaseActivity {
 		classId = getIntent().getExtras().getInt("id");
 		Log.i(TAG, ""+classId);
 		
-		initialiseInterface(R.layout.activity_class_students);
+		initialiseInterface(R.layout.activity_add_class);
 		
 		initialiseMembers();
 	}
@@ -59,7 +52,7 @@ public class ClassStudentsActivity extends BaseActivity {
 		// list ivew
 		listView = (ListView)findViewById(R.id.classUsersListView);
 		
-		String[] content = { "No classes" };		
+		String[] content = { "Classes Loading" };		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, content);
 		listView.setAdapter(adapter);
 		
@@ -68,8 +61,8 @@ public class ClassStudentsActivity extends BaseActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				User user = User.getInstance(ClassStudentsActivity.this);
-				ServerTask task = new ServerTask(ClassStudentsActivity.this, Constants.BASE_TEMP_URL + "classes/" + classId + "/user/" + userIds.get(arg2) + "/delete", new ServerCallback() {
+				User user = User.getInstance(AddStudentActivity.this);
+				ServerTask task = new ServerTask(AddStudentActivity.this, Constants.BASE_TEMP_URL + "classes/" + classId + "/add/" + userIds.get(arg2), new ServerCallback() {
 					@Override
 					public void run() {
 						// hide progress dialogue
@@ -79,19 +72,13 @@ public class ClassStudentsActivity extends BaseActivity {
 							if(response != null) {
 								Log.i(TAG, response.toString());
 								try {
-									JSONArray classes = response.getJSONArray("classes");
-									userIds = new ArrayList<Integer>();
-									userNames = new ArrayList<String>();
-									for(int i = 0; i < classes.length(); ++i) {
-										JSONObject row = classes.getJSONObject(i);
-										int id = row.getInt("id");
-										String name = row.getString("name");
-										userIds.add(id);
-										userNames.add(name);
+									boolean valid = response.getBoolean("valid");
+									if(valid) {
+										finish();
+									} else {
+										Utils.makeOkAlert(AddStudentActivity.this, "Server Error", "Class list cannot be added");
 									}
-									ArrayAdapter<String> adapter = new ArrayAdapter<String>(ClassStudentsActivity.this, android.R.layout.simple_list_item_1, userNames);
-									listView.setAdapter(adapter);
-									return; // these error (if any) are not 'server' errors
+									return;
 								} catch(JSONException e) {
 									if(Constants.DEBUG) {
 										Log.e(TAG, "Server error", e);
@@ -99,30 +86,16 @@ public class ClassStudentsActivity extends BaseActivity {
 								}
 							}
 						}
-						Utils.makeOkAlert(ClassStudentsActivity.this, "Server Error", "Sorry, Technical issues");
+						Utils.makeOkAlert(AddStudentActivity.this, "Server Error", "Sorry, Technical issues");
 					}
 				});
-				//
 				task.run();
-			}
-		});
-		
-		// + button
-		btnAddUser = (Button)findViewById(R.id.btnAddClass);
-		btnAddUser.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ClassStudentsActivity.this, AddStudentActivity.class);
-				intent.putExtra("id", classId);
-				ClassStudentsActivity.this.startActivity(intent);
 			}
 		});
 	}
 	
 	private void loadClasses() {
-		final User user = User.getInstance(this);
-		Log.i(TAG, Constants.BASE_TEMP_URL + "classes/" + classId + "/student");
-		ServerTask task = new ServerTask(ClassStudentsActivity.this, Constants.BASE_TEMP_URL + "classes/" + classId + "/student", new ServerCallback() {
+		ServerTask task = new ServerTask(AddStudentActivity.this, Constants.BASE_TEMP_URL + "users/student", new ServerCallback() {
 			@Override
 			public void run() {
 				// hide progress dialogue
@@ -142,7 +115,7 @@ public class ClassStudentsActivity extends BaseActivity {
 								userIds.add(id);
 								userNames.add(name);
 							}
-							ArrayAdapter<String> adapter = new ArrayAdapter<String>(ClassStudentsActivity.this, android.R.layout.simple_list_item_1, userNames);
+							ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddStudentActivity.this, android.R.layout.simple_list_item_1, userNames);
 							listView.setAdapter(adapter);
 							return; // these error (if any) are not 'server' errors
 						} catch(JSONException e) {
@@ -152,7 +125,7 @@ public class ClassStudentsActivity extends BaseActivity {
 						}
 					}
 				}
-				Utils.makeOkAlert(ClassStudentsActivity.this, "Server Error", "Sorry, Technical issues");
+				Utils.makeOkAlert(AddStudentActivity.this, "Server Error", "Sorry, Technical issues");
 			}
 		});
 		//
