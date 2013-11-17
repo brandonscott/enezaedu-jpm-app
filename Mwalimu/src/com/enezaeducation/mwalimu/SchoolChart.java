@@ -54,17 +54,10 @@ public class SchoolChart extends Fragment {
     
     /** showing chart page, when tab is opened */
     @Override
-<<<<<<< HEAD
     public void onViewCreated(final View view, Bundle savedInstanceState) {
     	final ArrayList<Bar> points = new ArrayList<Bar>();
     	
     	ServerTask task = new ServerTask(activity, Constants.SCHOOLCHART_URL, new ServerCallback() {
-=======
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-    	//final ArrayList<Bar> points = new ArrayList<Bar>();
-    	
-    	/*ServerTask.makeTask(activity, Constants.SCHOOLCHART_URL, new ServerCallback() {
->>>>>>> b6ba9820c2c72a1c24b8ef55943d660504f2c843
 			@Override
 			public void run() {
 				if(status == ServerTask.REQUEST_SUCCESS) {
@@ -103,13 +96,6 @@ public class SchoolChart extends Fragment {
     	});
 
     	task.run();
-    	
-    	
-<<<<<<< HEAD
-=======
-    	BarGraph g = (BarGraph) view.findViewById(R.id.graph);
-    	g.setBars(points);*/
->>>>>>> b6ba9820c2c72a1c24b8ef55943d660504f2c843
     }
     
 

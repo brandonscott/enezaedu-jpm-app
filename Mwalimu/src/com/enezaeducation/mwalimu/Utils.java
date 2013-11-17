@@ -11,6 +11,7 @@ public class Utils {
 
 	/** returns true if device is connected to Internet */
 	public static boolean isOnline(Context context){
+		if(context == null) return false;
 		ConnectivityManager connectivity = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if(connectivity != null) {
 			NetworkInfo[] info = connectivity.getAllNetworkInfo();
