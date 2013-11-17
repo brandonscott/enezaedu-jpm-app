@@ -13,6 +13,7 @@ import com.enezaeducation.mwalimu.Constants;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 //import android.util.Log;
 
 class Server {
@@ -91,7 +92,9 @@ class Server {
 			}
 			else {
 				ServerTask task = tasks.get(iterator);
-				if(!task.isPossible()) return;
+				//if(!task.isPossible()) return;
+				if(tasks.get(iterator).running) return;
+				Log.d("EXECUTE", "!");
 				if(Build.VERSION.SDK_INT < 11) {
 					tasks.get(iterator).execute();
 				} else {
