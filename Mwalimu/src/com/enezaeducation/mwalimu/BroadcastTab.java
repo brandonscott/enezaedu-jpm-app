@@ -108,6 +108,7 @@ public class BroadcastTab extends Fragment {
 													classIds.add(id);
 													classNames.add(name);
 												}
+												if(activity == null) return;
 												ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, classNames);
 												listView.setAdapter(adapter);
 												return; // these error (if any) are not 'server' errors

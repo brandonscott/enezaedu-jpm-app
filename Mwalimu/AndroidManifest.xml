@@ -28,7 +28,6 @@
         <activity
             android:name="com.enezaeducation.mwalimu.PerformanceActivity"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait"
             android:parentActivityName="com.enezaeducation.mwalimu.MainActivity">
             
             <meta-data

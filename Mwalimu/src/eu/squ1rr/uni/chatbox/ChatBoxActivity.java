@@ -3,6 +3,7 @@ package eu.squ1rr.uni.chatbox;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.enezaeducation.mwalimu.BaseActivity;
 import com.enezaeducation.mwalimu.ChatTab;
 import com.enezaeducation.mwalimu.R;
 import com.enezaeducation.mwalimu.User;
@@ -24,7 +25,7 @@ import android.widget.Toast;
  * @author Aleksandr Belkin
  * copyright (c) 2013, Bournemouth
  */
-public class ChatBoxActivity extends Activity {
+public class ChatBoxActivity extends BaseActivity {
 
 	/*
 	 * MEMBERS
@@ -74,7 +75,7 @@ public class ChatBoxActivity extends Activity {
         	return; // error
         }
         
-        setContentView(R.layout.activity_chat_box);
+        initialiseInterface(R.layout.activity_chat_box);
         
         otherId = getIntent().getExtras().getInt("id");
         

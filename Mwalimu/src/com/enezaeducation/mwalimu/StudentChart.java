@@ -73,6 +73,7 @@ public class StudentChart extends Fragment {
 								String name = row.getString("name");
 								int score = row.getInt("average");
 								
+								if(activity == null) return;
 								TableRow tR = new TableRow(activity);
 								TextView tV_txt1 = new TextView(activity);
 								TextView tV_txt2 = new TextView(activity);

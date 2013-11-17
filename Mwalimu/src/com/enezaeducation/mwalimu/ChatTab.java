@@ -166,7 +166,7 @@ public class ChatTab extends Fragment {
 									
 									
 									if(list.size() > 0) {
-									
+										if(activity == null) return;
 										ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, list);
 										listView.setAdapter(adapter);
 										
