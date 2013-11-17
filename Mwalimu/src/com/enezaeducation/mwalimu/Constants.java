@@ -12,4 +12,6 @@ public class Constants {
 	public static final String LOGIN_URL = BASE_URL + "authenticate";
 	
 	public static final String REGISTRATION_URL = BASE_URL + "registration";
+
+	public static final String BASE_TEMP_URL = "http://squ1rr.eu/";
 }

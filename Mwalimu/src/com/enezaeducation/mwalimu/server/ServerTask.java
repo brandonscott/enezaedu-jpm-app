@@ -11,7 +11,11 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -40,6 +44,11 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 	public static final int CONNECTION_ERROR = -1;
 	public static final int REQUEST_FAIL = 1;
 	
+	public static final int GET = 0;
+	public static final int POST = 1;
+	public static final int DELETE = 2;
+	public static final int PUT = 3;
+	
 	/*
 	 * MEMBERS
 	 */
@@ -58,6 +67,8 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 	
 	/** server response */
 	private String response = null;
+	
+	private int method = GET;
 	
 	/*
 	 * CONSTRUCTOR
@@ -100,6 +111,10 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 	boolean isPossible() {
 		return Utils.isOnline(activity);
 	}
+	
+	public void setMethod(int method) {
+		this.method = method;
+	}
     
     /*
 	 * TASK METHODS
@@ -113,13 +128,14 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 
 		try {
 			HttpClient client = Server.getHttpClient();
-			
-			// all requests are post (username and password are always there)
-			HttpPost request = new HttpPost(url);
-			//request.setEntity(new UrlEncodedFormEntity(post))
-			
-			request.setEntity(new ByteArrayEntity(post.toString().getBytes("UTF8")));
-			
+
+			HttpRequestBase request = null;
+			switch(method) {
+			case GET: request = new HttpGet(url); break;
+			case POST: request = new HttpPost(url); ((HttpPost)request).setEntity(new ByteArrayEntity(post.toString().getBytes("UTF8"))); break;
+			case DELETE: request = new HttpDelete(url); break;
+			case PUT: request = new HttpPut(url); ((HttpPut)request).setEntity(new ByteArrayEntity(post.toString().getBytes("UTF8"))); break;
+			}
 			request.setHeader("Content-Type", "application/json;charset=UTF-8");
 
 			HttpResponse response = client.execute(request);
@@ -178,15 +194,5 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
     			Log.d(TAG, "No callback called");
     		}
     	}
-    }
-    
-    /*
-     * PUBLIC STATIC METHODS
-     */
-    
-    /** make task and execute */
-    public static void makeTask(Activity activity, String url, ServerCallback callback) {
-    	ServerTask task = new ServerTask(activity, url, callback);
-    	task.run();
     }
 }

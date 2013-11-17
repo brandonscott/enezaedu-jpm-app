@@ -10,5 +10,7 @@
     <string name="title_activity_school_chart">SchoolChart</string>
     <string name="title_activity_student_chart">StudentChart</string>
     <string name="hello">Test</string>
+    <string name="title_activity_class">ClassActivity</string>
+    <string name="title_activity_class_students">ClassStudentsActivity</string>
 
 </resources>
