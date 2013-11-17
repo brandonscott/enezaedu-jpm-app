@@ -29,4 +29,7 @@ proguard/
 *.ipr
 *.iws
 .idea/
+.metadata/*
+.metadata
 .metadata/
+project.properties

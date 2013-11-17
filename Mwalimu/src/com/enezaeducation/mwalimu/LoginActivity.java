@@ -1,11 +1,18 @@
 package com.enezaeducation.mwalimu;
 
+import org.json.JSONException;
+
+import com.enezaeducation.mwalimu.server.ServerCallback;
+import com.enezaeducation.mwalimu.server.ServerTask;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class LoginActivity extends BaseActivity {
@@ -100,16 +107,56 @@ public class LoginActivity extends BaseActivity {
 		// show progress
 		progressDialog.show();
 		
-		// LOGIN HERE
+		if(Constants.SKIP_LOGIN) {
+			progressDialog.dismiss();
+			switchToMainActivity();
+			return;
+		}
+		
+		ServerTask task = new ServerTask(this, Constants.LOGIN_URL, new ServerCallback() {
+			@Override
+			public void run() {
+				// hide progress dialogue
+				progressDialog.hide();
+				
+				if(status == ServerTask.REQUEST_SUCCESS) {
+					// response available
+					if(response != null) {
+						boolean loggedIn;
+						try {
+							loggedIn = response.getBoolean("valid");
+							if(loggedIn) {
+								progressDialog.dismiss();
+								
+								if(((CheckBox)findViewById(R.id.remember)).isChecked()) {
+									user.save();
+								} else {
+									user.remove();
+								}
+								
+								switchToMainActivity();
+							} else {
+								String desc = response.getString("description");
+								Utils.makeOkAlert(LoginActivity.this, "Login rejecetd", desc);
+							}
+							
+							return; // these error (if any) are not 'server' errors
+						} catch(JSONException e) {
+							if(Constants.DEBUG) {
+								Log.e(TAG, "Server error", e);
+							}
+						}
+					}
+				}
+				Utils.makeOkAlert(LoginActivity.this, "Server Error", "Sorry, Technical issues");
+			}
+		});
+		//
+		task.addParameter("username", user.getUsername());
+		task.addParameter("password", user.getPassword());
+		task.run();
 	}
 
-	/** start MainActivity and closes LoginActivity */
-	private void switchToMainActivity() {
-		// TODO: Intent mainActivity = new Intent(this, MainActivity.class);
-		// TODO: this.startActivity(mainActivity);
-		finish();
-	}
-	
 	/*
 	 * PRIVATE CALLBACKS
 	 */
@@ -135,13 +182,14 @@ public class LoginActivity extends BaseActivity {
    	protected void switchToRegisterActivity() {
    		Intent intent = new Intent(this, RegistrationActivity.class);
    		this.startActivity(intent);
-   		finish();
+   		finish(); // TODO: back button on registration activity
    	}
     
     /** when button clicked */
     private OnClickListener btnRegisterListener = new OnClickListener() {
 		@Override
         public void onClick(View v) {
+			progressDialog.dismiss();
 			switchToRegisterActivity();
         }
     };

@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last updated: "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#Date#"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnPerformance"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_weight="1"
+            android:text="Performance" />
+
+        <Button
+            android:id="@+id/btnAssignWork"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_weight="1"
+            android:text="Assign Work" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnClasses"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="fill_vertical"
+            android:layout_weight="1"
+            android:text="Classes" />
+
+        <Button
+            android:id="@+id/btnChat"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:text="Chat" />
+
+    </LinearLayout>
+
+</LinearLayout>

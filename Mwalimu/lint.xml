@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+<<<<<<< HEAD
+=======
+    <issue id="SetJavaScriptEnabled" severity="ignore" />
+>>>>>>> d927b7e741689ed956edfd4ad4e87b7d608790d0
 </lint>

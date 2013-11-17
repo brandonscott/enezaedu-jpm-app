@@ -5,5 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_performance">PerformanceActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_school_chart">SchoolChart</string>
+    <string name="title_activity_student_chart">StudentChart</string>
+    <string name="hello">Test</string>
 
 </resources>

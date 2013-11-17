@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="user_types">
-        <item>Public</item>
         <item>Teacher</item>
+        <item>Public</item>
         <item>Student</item>
         <item>Parent</item>
+    </string-array>
+    
+    <string-array name="user_gender">
+        <item>M</item>
+        <item>F</item>
     </string-array>
 </resources>
