@@ -156,6 +156,10 @@ public class RegistrationActivity extends BaseActivity {
 							try {
 								loggedIn = response.getBoolean("valid");
 								if(loggedIn) {
+									JSONObject obj = response.getJSONObject("user");
+									User user = User.getInstance(RegistrationActivity.this);
+									user.setId(obj.getInt("id"));
+									
 									switchToMainActivity();
 								} else {
 									String desc = response.getString("description");

@@ -132,9 +132,9 @@ public class LoginActivity extends BaseActivity {
 							if(loggedIn) {
 								progressDialog.dismiss();
 								
-								//TODO: user.setId(response.getInt("id"));
-								user.setId(11);
-								Log.i(TAG, "" + ((CheckBox)findViewById(R.id.remember)).isChecked());
+								user.setId(response.getInt("user_id"));
+								
+								//Log.i(TAG, "" + ((CheckBox)findViewById(R.id.remember)).isChecked());
 								if(((CheckBox)findViewById(R.id.remember)).isChecked()) {
 									user.save();
 								} else {
