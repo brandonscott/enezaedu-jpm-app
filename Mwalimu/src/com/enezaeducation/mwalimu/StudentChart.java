@@ -59,7 +59,7 @@ public class StudentChart extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	User user = User.getInstance(activity);
-    	ServerTask task = new ServerTask(activity, Constants.STUDENTCHART_URL + user.getId(), new ServerCallback() {
+    	ServerTask task = new ServerTask(activity, Constants.STUDENTCHART_URL, new ServerCallback() {
 			@Override
 			public void run() {
 				if(status == ServerTask.REQUEST_SUCCESS) {
@@ -67,11 +67,11 @@ public class StudentChart extends Fragment {
 					if(response != null) {
 						Log.i("", response.toString());
 						try {
-							JSONArray students = response.getJSONArray("students");
+							JSONArray students = response.getJSONArray("users");
 							for(int i = 0; i < students.length(); ++i) {
 								JSONObject row = students.getJSONObject(i);
 								String name = row.getString("name");
-								int score = row.getInt("score");
+								int score = row.getInt("average");
 								
 								TableRow tR = new TableRow(activity);
 								TextView tV_txt1 = new TextView(activity);

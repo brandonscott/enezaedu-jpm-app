@@ -1,12 +1,15 @@
 package eu.squ1rr.uni.chatbox;
 
+import java.util.ArrayList;
 import java.util.Date;
 
+import com.enezaeducation.mwalimu.ChatTab;
 import com.enezaeducation.mwalimu.R;
 import com.enezaeducation.mwalimu.User;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,7 +33,7 @@ public class ChatBoxActivity extends Activity {
 	/**
 	 * An adapter for a Chat Box list view
 	 */
-	private ChatAdapter listAdapter = null;
+	public ChatAdapter listAdapter = null;
 	
 	/*
 	 * INTERFACE MEMBERS
@@ -51,6 +54,10 @@ public class ChatBoxActivity extends Activity {
 	 */
 	private Button buttonSend = null;
 	
+	private int otherId = -1;
+	
+	public static ChatBoxActivity self = null;
+	
 	/*
 	 * INITIALISATION
 	 */
@@ -62,10 +69,29 @@ public class ChatBoxActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        if(getIntent().getExtras() == null) {
+        	return; // error
+        }
+        
         setContentView(R.layout.activity_chat_box);
+        
+        otherId = getIntent().getExtras().getInt("id");
         
         initialiseMembers();
         initialiseInterface();
+    }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	self = this;
+    }
+    
+    @Override
+    public void onPause() {
+    	self = null;
+    	super.onPause();
     }
 
     /*
@@ -91,6 +117,18 @@ public class ChatBoxActivity extends Activity {
     	listAdapter = new ChatAdapter(this, listView);
     	
     	// fill adapter with fake data
+    	ArrayList<Message> messages = new ArrayList<Message>();
+    	
+    	for(Message msg : ChatTab.messages) {
+    		Log.i("123", msg.getReceId() + " " + msg.getSenderId() + " " + otherId);
+    		if(msg.getReceId() == otherId || msg.getSenderId() == otherId) {
+    			messages.add(msg);
+    		}
+    	}
+    	
+    	Log.i("ASD", "" + messages.size());
+    	
+    	listAdapter.addMessages(messages);
     	//listAdapter.addMessages(FakeServer.genMessages(45, 6)); TODO;
     }
     

@@ -86,6 +86,7 @@ public class AddStudentActivity extends BaseActivity {
 						Utils.makeOkAlert(AddStudentActivity.this, "Server Error", "Sorry, Technical issues");
 					}
 				});
+				task.setMethod(ServerTask.POST);
 				task.run();
 			}
 		});
@@ -102,7 +103,7 @@ public class AddStudentActivity extends BaseActivity {
 					if(response != null) {
 						Log.i(TAG, response.toString());
 						try {
-							JSONArray classes = response.getJSONArray("students");
+							JSONArray classes = response.getJSONArray("users");
 							userIds = new ArrayList<Integer>();
 							userNames = new ArrayList<String>();
 							for(int i = 0; i < classes.length(); ++i) {

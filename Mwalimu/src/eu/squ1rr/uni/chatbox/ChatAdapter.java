@@ -4,14 +4,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.enezaeducation.mwalimu.ChatTab;
+import com.enezaeducation.mwalimu.Constants;
 import com.enezaeducation.mwalimu.R;
+import com.enezaeducation.mwalimu.User;
+import com.enezaeducation.mwalimu.server.ServerCallback;
+import com.enezaeducation.mwalimu.server.ServerTask;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.util.Log;
 import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -51,7 +64,7 @@ public class ChatAdapter extends BaseAdapter {
 	 * @param context parent's context
 	 * @param listView list view
 	 */
-	public ChatAdapter(Context context, ListView listView) {
+	public ChatAdapter(final Activity context, ListView listView) {
 		this.context = context;
 		this.listView = listView;
 	}
@@ -220,7 +233,7 @@ public class ChatAdapter extends BaseAdapter {
 			boolean sameSender = message.getSenderId() == last.getSender();
 			long timeDiff = message.getTimeStamp() - last.getTimeStamp();
 			
-			if(sameSender && timeDiff <= Constants.MESSAGE_JOIN_TIME) {
+			if(sameSender && timeDiff <= 30 * 1000) {
 				// join messages from same sender within the time period of
 				// Constants.MESSAGE_JOIN_TIME
 				last.addMessage(message);

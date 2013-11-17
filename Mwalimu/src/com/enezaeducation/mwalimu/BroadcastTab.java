@@ -20,6 +20,8 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -66,10 +68,20 @@ public class BroadcastTab extends Fragment {
     public void onViewCreated(final View view, Bundle savedInstanceState) {
     	final ListView listView = (ListView)view.findViewById(R.id.classesListView);
     	
-    	int ts = 0;
     	User user = User.getInstance(activity);
     	
-    	ServerTask task = new ServerTask(activity, Constants.BASE_URL + "users/" + user.getId() + "/timestamp/" + ts, new ServerCallback() {
+    	listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Utils.makeOkAlert(activity, "Demo", "Not available yet");
+			}
+    		
+    	});
+    	
+    	ServerTask task = new ServerTask(activity, Constants.BASE_URL + "users/" + user.getId() + "/classes", new ServerCallback() {
 			@Override
 			public void run() {
 				if(status == ServerTask.REQUEST_SUCCESS) {
@@ -92,7 +104,7 @@ public class BroadcastTab extends Fragment {
 												for(int i = 0; i < classes.length(); ++i) {
 													JSONObject row = classes.getJSONObject(i);
 													int id = row.getInt("id");
-													String name = row.getString("name");
+													String name = row.getString("subject");
 													classIds.add(id);
 													classNames.add(name);
 												}
@@ -106,7 +118,7 @@ public class BroadcastTab extends Fragment {
 											}
 										}
 									}
-									Utils.makeOkAlert(activity, "Server Error", "Sorry, Technical issues");
+									//Utils.makeOkAlert(activity, "Server Error", "Sorry, Technical issues");
 								}
 							});
 							//

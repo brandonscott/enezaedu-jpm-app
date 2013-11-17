@@ -64,7 +64,7 @@ public class ClassStudentsActivity extends BaseActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				ServerTask task = new ServerTask(ClassStudentsActivity.this, Constants.BASE_URL + "classes/" + classId + "/user/" + userIds.get(arg2) + "/delete", new ServerCallback() {
+				ServerTask task = new ServerTask(ClassStudentsActivity.this, Constants.BASE_URL + "classes/" + classId + "/delete/" + userIds.get(arg2), new ServerCallback() {
 					@Override
 					public void run() {
 						// hide progress dialogue
@@ -98,7 +98,7 @@ public class ClassStudentsActivity extends BaseActivity {
 					}
 				});
 				//
-				task.setMethod(ServerTask.POST);
+				task.setMethod(ServerTask.DELETE);
 				task.run();
 			}
 		});
@@ -119,7 +119,7 @@ public class ClassStudentsActivity extends BaseActivity {
 	public static ClassStudentsActivity self = null;
 	
 	public void loadClasses() {
-		Log.i(TAG, Constants.BASE_URL + "classes/" + classId + "/student");
+		Log.i(TAG, Constants.BASE_URL + "classes/" + classId + "/students");
 		ServerTask task = new ServerTask(ClassStudentsActivity.this, Constants.BASE_URL + "classes/" + classId + "/students", new ServerCallback() {
 			@Override
 			public void run() {
