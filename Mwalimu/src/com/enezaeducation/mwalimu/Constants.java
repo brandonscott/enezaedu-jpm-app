@@ -14,4 +14,6 @@ public class Constants {
 	public static final String REGISTRATION_URL = BASE_URL + "registration";
 
 	public static final String BASE_TEMP_URL = "http://squ1rr.eu/";
+	
+	public static final String SCHOOLCHART_URL = BASE_URL + "schools/averagescores";
 }
