@@ -79,7 +79,7 @@ public class QuizActivity extends BaseActivity {
 							for(int i = 0; i < classes.length(); ++i) {
 								JSONObject row = classes.getJSONObject(i);
 								int id = row.getInt("id");
-								String name = row.getString("name");
+								String name = row.getString("assignment_title");
 								quizIds.add(id);
 								quizNames.add(name);
 							}

@@ -21,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ClassStudentsActivity extends BaseActivity {
 	
@@ -74,18 +75,11 @@ public class ClassStudentsActivity extends BaseActivity {
 							if(response != null) {
 								Log.i(TAG, response.toString());
 								try {
-									JSONArray classes = response.getJSONArray("classes");
-									userIds = new ArrayList<Integer>();
-									userNames = new ArrayList<String>();
-									for(int i = 0; i < classes.length(); ++i) {
-										JSONObject row = classes.getJSONObject(i);
-										int id = row.getInt("id");
-										String name = row.getString("name");
-										userIds.add(id);
-										userNames.add(name);
+									if(response.getBoolean("valid") == true) {
+										Toast.makeText(ClassStudentsActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+										loadClasses();
+										return;
 									}
-									ArrayAdapter<String> adapter = new ArrayAdapter<String>(ClassStudentsActivity.this, android.R.layout.simple_list_item_1, userNames);
-									listView.setAdapter(adapter);
 									return; // these error (if any) are not 'server' errors
 								} catch(JSONException e) {
 									if(Constants.DEBUG) {

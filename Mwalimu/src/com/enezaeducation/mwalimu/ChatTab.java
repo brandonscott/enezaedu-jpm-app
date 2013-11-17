@@ -101,6 +101,9 @@ public class ChatTab extends Fragment {
     	
     	ts = 0;
     	
+    	messages = new ArrayList<Message>();
+    	names = new SparseArray<String>();
+    	
     	//Log.i(TAG, Constants.BASE_URL + "users/" + user.getId() + "/timestamp/" + ts);
     	r = new Runnable() {
 
@@ -141,7 +144,7 @@ public class ChatTab extends Fragment {
 										
 										ChatTab.messages.add(message);
 										
-										if(ChatBoxActivity.self != null) {
+										if(ChatBoxActivity.self != null) { // hack
 											ChatBoxActivity.self.listAdapter.addMessage(message);
 										}
 									}

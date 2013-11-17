@@ -81,7 +81,9 @@ public class StudentChart extends Fragment {
 								tR.addView(tV_txt1);
 						        tR.addView(tV_txt2);
 						        
-						        ((TableLayout)activity.findViewById(R.id.tableLayout1)).addView(tR);
+						        if(activity != null && activity.findViewById(R.id.tableLayout1) != null) {
+						        	((TableLayout)activity.findViewById(R.id.tableLayout1)).addView(tR);
+						        }
 							}
 							return; // these error (if any) are not 'server' errors
 						} catch(JSONException e) {

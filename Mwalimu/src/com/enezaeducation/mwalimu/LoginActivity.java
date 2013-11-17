@@ -79,7 +79,7 @@ public class LoginActivity extends BaseActivity {
 		
 		// initialise progress dialogue
 		progressDialog = new ProgressDialog(this);
-		progressDialog.setTitle("Loggin in");
+		progressDialog.setTitle("Logging in");
 		progressDialog.setMessage("Please wait... Logging you in...");
 		
 		// initialise sign in button

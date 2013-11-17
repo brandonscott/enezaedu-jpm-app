@@ -119,9 +119,11 @@ public class ChatBoxActivity extends Activity {
     	// fill adapter with fake data
     	ArrayList<Message> messages = new ArrayList<Message>();
     	
+    	User user = User.getInstance(this);
+    	
     	for(Message msg : ChatTab.messages) {
-    		Log.i("123", msg.getReceId() + " " + msg.getSenderId() + " " + otherId);
-    		if(msg.getReceId() == otherId || msg.getSenderId() == otherId) {
+    		Log.i("123", msg.getReceId() + " " + msg.getSenderId() + " " + otherId + " " + 17 + " " + user.getId());
+    		if(msg.getReceId() == otherId || msg.getSenderId() == otherId || msg.getReceId() == 17 || msg.getSenderId() == 17) {
     			messages.add(msg);
     		}
     	}
@@ -129,7 +131,7 @@ public class ChatBoxActivity extends Activity {
     	Log.i("ASD", "" + messages.size());
     	
     	listAdapter.addMessages(messages);
-    	//listAdapter.addMessages(FakeServer.genMessages(45, 6)); TODO;
+    	//listAdapter.addMessages(FakeServer.genMessages(45, 6));
     }
     
     /**
