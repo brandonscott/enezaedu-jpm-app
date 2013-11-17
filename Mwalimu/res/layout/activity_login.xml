@@ -16,7 +16,7 @@
         android:id="@+id/textUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIGN INTO \n ENEZA"
+        android:text="SIGN INTO \nENEZA"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
