@@ -1,7 +1,6 @@
 package com.enezaeducation.mwalimu;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 
 import java.util.ArrayList;
@@ -13,11 +12,8 @@ import org.json.JSONObject;
 import com.enezaeducation.mwalimu.server.ServerCallback;
 import com.enezaeducation.mwalimu.server.ServerTask;
 
-import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -68,7 +64,6 @@ public class ClassStudentsActivity extends BaseActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				User user = User.getInstance(ClassStudentsActivity.this);
 				ServerTask task = new ServerTask(ClassStudentsActivity.this, Constants.BASE_URL + "classes/" + classId + "/user/" + userIds.get(arg2) + "/delete", new ServerCallback() {
 					@Override
 					public void run() {
@@ -103,6 +98,7 @@ public class ClassStudentsActivity extends BaseActivity {
 					}
 				});
 				//
+				task.setMethod(ServerTask.POST);
 				task.run();
 			}
 		});
@@ -112,6 +108,7 @@ public class ClassStudentsActivity extends BaseActivity {
 		btnAddUser.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				self = ClassStudentsActivity.this;
 				Intent intent = new Intent(ClassStudentsActivity.this, AddStudentActivity.class);
 				intent.putExtra("id", classId);
 				ClassStudentsActivity.this.startActivity(intent);
@@ -119,8 +116,9 @@ public class ClassStudentsActivity extends BaseActivity {
 		});
 	}
 	
-	private void loadClasses() {
-		final User user = User.getInstance(this);
+	public static ClassStudentsActivity self = null;
+	
+	public void loadClasses() {
 		Log.i(TAG, Constants.BASE_URL + "classes/" + classId + "/student");
 		ServerTask task = new ServerTask(ClassStudentsActivity.this, Constants.BASE_URL + "classes/" + classId + "/students", new ServerCallback() {
 			@Override

@@ -10,7 +10,6 @@ import com.enezaeducation.mwalimu.server.ServerCallback;
 import com.enezaeducation.mwalimu.server.ServerTask;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -65,13 +64,16 @@ public class ClassActivity extends BaseActivity {
 		btnAddClass.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				self = ClassActivity.this;
 				Intent intent = new Intent(ClassActivity.this, AddClassActivity.class);
 		   		ClassActivity.this.startActivity(intent);
 			}
 		});
 	}
 	
-	private void loadClasses() {
+	public static ClassActivity self = null; 
+	
+	public void loadClasses() {
 		final User user = User.getInstance(this);
 		Log.i(TAG, Constants.BASE_URL + "users/" + user.getId() + "/classes");
 		ServerTask task = new ServerTask(ClassActivity.this, Constants.BASE_URL + "users/" + user.getId() + "/classes", new ServerCallback() {

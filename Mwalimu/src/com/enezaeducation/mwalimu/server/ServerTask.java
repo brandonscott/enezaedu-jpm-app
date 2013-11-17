@@ -49,6 +49,8 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
 	public static final int DELETE = 2;
 	public static final int PUT = 3;
 	
+	public boolean running = false;
+	
 	/*
 	 * MEMBERS
 	 */
@@ -127,6 +129,11 @@ public class ServerTask extends AsyncTask<Void, Void, Integer> {
     /*
 	 * TASK METHODS
 	 */
+	
+	@Override
+	protected void onPreExecute() {
+		running = true;
+	}
 
     
 	/** execute HTTP request */
