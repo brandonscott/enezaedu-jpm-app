@@ -1,5 +1,5 @@
 package com.enezaeducation.mwalimu;
-
+/** A class for broadcasting a message to many students */
 import java.util.ArrayList;
 import java.util.Random;
 

@@ -6,7 +6,7 @@ import com.enezaeducation.mwalimu.StudentChart;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-
+/** A container for a chatTab and broadcastTab */
 public class ChatActivity extends BaseActivity {
 
 	

@@ -1,7 +1,7 @@
 package com.enezaeducation.mwalimu;
-
+/** A class for sending a message to a specific student*/
 import java.util.ArrayList;
-import java.util.Random;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,7 +12,6 @@ import com.enezaeducation.mwalimu.server.ServerTask;
 
 import eu.squ1rr.uni.chatbox.Message;
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -61,7 +60,7 @@ public class ChatTab extends Fragment {
     	
     }
     
-    /** showing chart page, when tab is opened */
+    /** showing chat page, when tab is opened */
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
     	ListView listView = (ListView)view.findViewById(R.id.classesListView);

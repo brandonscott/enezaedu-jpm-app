@@ -1,5 +1,5 @@
 package com.enezaeducation.mwalimu;
-
+/** A class or adding students to the database through the JSON interface */
 import java.util.ArrayList;
 
 import org.json.JSONArray;
